@@ -1,5 +1,7 @@
 <?php
     $this->title = 'Личный кабинет';
+
+    use yii\bootstrap\Modal;
 ?>
 
 <div class="container-fluid">
@@ -13,8 +15,23 @@
     Стаж: <?= Yii::$app->user->identity['experience']; ?> года<br/>
     Рост: <?= Yii::$app->user->identity['growth']; ?><br/>
     Вес: <?= Yii::$app->user->identity['weight']; ?><br/>
-    Прочитанные книги: <?php foreach ($books as $books): ?>
-        <?= $books['name']; ?> |
-    <?php endforeach; ?><br/>
+    Прочитанные книги: <a href="#" onclick="return getBooks();">открыть список</a><br/>
+    Изученные элементы: <a href="#" onclick="return getElements();">открыть список</a><br/>
 </div>
+<?php
+    Modal::begin([
+        'header' => '<h2>Прочитанные книги</h2>',
+        'footer' => '<button type="button" data-dismiss="modal" class="btn btn-success"> Закрыть </button>',
+        'id' => 'modal-books',
+    ]);
+    Modal::end();
+
+    Modal::begin([
+        'header' => '<h2>Изученные элементы</h2>',
+        'footer' => '<button type="button" data-dismiss="modal" class="btn btn-success"> Закрыть </button>',
+        'id' => 'modal-elements',
+    ]);
+    Modal::end();
+?>
+
 

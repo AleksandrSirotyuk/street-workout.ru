@@ -27,8 +27,8 @@ AppAsset::register($this);
                 <li><a href="<?= Url::home(); ?>">Главная</a></li>
                 <li class="dropdown-standart"><a href="" class="dropdown">Соревнования</a>
                     <ul class="submenu-standart">
-                        <li><a href="">Список соревнований</a></li>
-                        <li><a href="">Workout - зарубы</a></li>
+                        <li><a href="<?= Url::to(['/competition/index']) ?>">Список соревнований</a></li>
+                        <li><a href="<?= Url::to(['/fights/upcoming-fights']) ?>">Workout - зарубы</a></li>
                         <li><a href="">Workout - челенджи</a></li>
                     </ul>
                 </li>
@@ -36,9 +36,9 @@ AppAsset::register($this);
                     <ul class="submenu">
                         <li><h3>Тренировки</h3>
                             <ul>
-                                <li><a href="">Обучающие видео</a></li>
-                                <li><a href="">Обучающие статьи</a></li>
+                                <li><a href="<?= Url::to(['/article/index']) ?>">Обучающие статьи</a></li>
                                 <li><a href="">Программы тренировок</a></li>
+                                <li><a href="<?= Url::to(['/elements']) ?>">Элементы воркаута</a></li>
                             </ul>
                         </li>
                         <li><h3>Спортивная жизнь</h3>
@@ -77,7 +77,9 @@ AppAsset::register($this);
     </nav>
 </header>
 <!-- End of header with the top menu -->
+
 <?= $content; ?>
+
 <!-- Footer -->
 <footer>
     <div class="container-fluid">

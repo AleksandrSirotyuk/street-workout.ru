@@ -27,6 +27,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/vendor/bootstrap.min.js',
+        'js/main.js',
 //        'js/vendor/jquery.matchHeight-min.js',
 //        'js/vendor/jquery-1.11.3.min.js',
         'js/scripts.js',

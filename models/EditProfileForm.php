@@ -43,10 +43,9 @@ class EditProfileForm extends Model
     public function rules()
     {
         return [
-            [['login', 'password'], 'required'],
             ['login', 'string', 'min' => 4],
             ['password', 'string', 'min' => 5],
-            [['last_name', 'name','patronymic', 'date_birth', 'experience', 'growth', 'weight'], 'safe'],
+            [['login', 'password','last_name', 'name','patronymic', 'date_birth', 'experience', 'growth', 'weight'], 'safe'],
         ];
     }
 

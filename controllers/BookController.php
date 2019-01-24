@@ -42,12 +42,12 @@ class BookController extends Controller
     public function actionAdd($id){
         $book = new Book();
         $book->addBook($id);
-        return $this->redirect(Yii::$app->request->referrer);
+        return true;
     }
 
     public function actionRate($id, $mark){
         $book  = new Book();
         $book->rateBook($id, $mark);
-        return $this->redirect(Yii::$app->request->referrer);
+        return true;
     }
 }

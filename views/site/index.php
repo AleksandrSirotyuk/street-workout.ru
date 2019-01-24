@@ -58,24 +58,18 @@ use yii\helpers\Url;
 <section class="popular_tutorials">
     <h2>Популярные обучалки</h2>
     <div class="container-fluid">
-        <div class="col-md-6">
-            <h3>Передний вис</h3>
-            <div class="video_tutorial">
-                <iframe width="560" height="315"
-                        src="https://www.youtube.com/embed/h1z4rLqiu2U" frameborder="0"
-                        allow="autoplay; encrypted-media" allowfullscreen>
-                </iframe>
+        <?php foreach ($articles as $article): ?>
+            <div class="col-md-6">
+                <h3><?= $article['name']; ?></h3>
+                <div class="video_tutorial">
+                    <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/<?= $article['video_link']; ?>" frameborder="0"
+                            allow="autoplay; encrypted-media" allowfullscreen>
+                    </iframe>
+                </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <h3>Флаг</h3>
-            <iframe width="560" height="315"
-                    src="https://www.youtube.com/embed/eMMMf9B-V3Y" frameborder="0"
-                    allow="autoplay; encrypted-media" allowfullscreen>
-            </iframe>
-        </div>
+        <?php endforeach; ?>
     </div>
 </section>
 <!-- End of popular tutorials -->
 
-<?php echo Yii::$app->user->identity['login']; ?>

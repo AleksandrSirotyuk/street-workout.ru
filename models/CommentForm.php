@@ -18,7 +18,7 @@ class CommentForm extends Model
     public function attributeLabels()
     {
         return [
-            'text' => 'Отзыв:',
+            'text' => '',
         ];
     }
     public function rules()

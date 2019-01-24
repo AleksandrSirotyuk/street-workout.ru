@@ -38,7 +38,8 @@ class Book extends ActiveRecord
         return $averageMark;
     }
     public function getCommentBook($id){
-        $commentBook = Yii::$app->db->createCommand('SELECT `comment`,`id_user`  FROM `user_book` 
+        $commentBook = Yii::$app->db->createCommand('SELECT `comment`,`id_user`, `login`  FROM `user_book` 
+            JOIN `user` ON `user_book`.`id_user` = `user`.`id`
             WHERE `user_book`.`id_book` = :id_book AND `user_book`.`comment` IS NOT NULL',
             [':id_book' => $id])->queryAll();
         return $commentBook;

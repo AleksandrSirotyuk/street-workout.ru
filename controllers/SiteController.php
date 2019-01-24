@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use app\models\EditProfileForm;
+use app\models\Element;
 use app\models\RegistrationForm;
 use app\models\User;
+use app\models\Article;
 use Yii;
 use yii\web\Controller;
 use app\models\AuthorizationForm;
@@ -14,7 +16,8 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $articles = Article::find()->where(['id_category' => 1])->asArray()->all();
+        return $this->render('index', compact('articles'));
     }
 
     public function actionRegistration(){
@@ -52,7 +55,8 @@ class SiteController extends Controller
     public function actionProfile(){
         $user = new User();
         $books = $user->getBooksByUserId(Yii::$app->user->identity['id']);
-        return $this->render('profile', compact('books'));
+        $elements = $user->getElementsByUserId(Yii::$app->user->identity['id']);
+        return $this->render('profile', compact('books','elements'));
     }
 
     public function actionEditProfile(){
@@ -64,5 +68,40 @@ class SiteController extends Controller
             }
         }
         return $this->render('edit-profile', compact('editProfileForm'));
+    }
+
+    public function actionShowBooks(){
+        $this->layout = false;
+        $user = new User();
+        $books = $user->getBooksByUserId(Yii::$app->user->identity['id']);
+        return $this->render('book-cart', compact('books'));
+    }
+
+    public function actionDeleteBook($id){
+        $this->layout = false;
+        $user = new User();
+        $user->deleteBook($id);
+        $books = $user->getBooksByUserId(Yii::$app->user->identity['id']);
+        return $this->render('book-cart', compact('books'));
+    }
+
+    public function actionShowElements(){
+        $this->layout = false;
+        $user = new User();
+        $elements = $user->getElementsByUserId(Yii::$app->user->identity['id']);
+        return $this->render('window-elements', compact('elements'));
+    }
+
+    public function actionDeleteElement($id){
+        $this->layout = false;
+        $user = new User();
+        $user->deleteElement($id);
+        $elements = $user->getElementsByUserId(Yii::$app->user->identity['id']);
+        return $this->render('window-elements', compact('elements'));
+    }
+
+    public function actionViewUser($id){
+        $user = User::findOne($id);
+        return $this->render('view-user', compact('user'));
     }
 }
